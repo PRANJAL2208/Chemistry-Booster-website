@@ -1,0 +1,412 @@
+/* --- DYNAMIC THEME SYSTEM (DEFAULT: STUDENT MODE) --- */
+:root {
+    /* STUDENT MODE (Dark/Terminal Aesthetic) */
+    --bg-primary: #0D1117; /* Deep Charcoal */
+    --bg-secondary: #161B22; /* Card Background */
+    --text-main: #E0E0E0;
+    --text-secondary: #9CA3AF; /* Gray Text */
+    --accent-action: #7EFF00; /* Signal Green (CTA - "Run Code/Success") */
+    --accent-highlight: #00D4AA; /* Technical Teal (Links/Icons/Headlines) */
+    --accent-warning: #FFC107; /* Amber/Orange (Critical Data/Warning) */
+    --ui-card-border: rgba(126, 255, 0, 0.2);
+    --ui-card-shadow: rgba(126, 255, 0, 0.1);
+
+    /* New: for Molecule */
+    --atom-color: #00D4AA; /* Technical Teal */
+    --central-core-color: #7EFF00; /* Signal Green */
+    --energy-field-color: #00D4AA; /* Technical Teal */
+}
+
+/* PARENT MODE (Minimalist & Zen Palette) */
+.parent-mode {
+    --bg-primary: #F0F4F8; /* Light Grey/Zen */
+    --bg-secondary: #FFFFFF;
+    --text-main: #111827; /* Dark Navy Text */
+    --text-secondary: #4B5563;
+    --accent-action: #008080; /* Deep Teal (CTA - Calm Professional Action) */
+    --accent-highlight: #3B82F6; /* Soft Sky Blue (Links/Icons) */
+    --accent-warning: #CC7722; /* Muted Amber (Critical Data) */
+    --ui-card-border: rgba(0, 128, 128, 0.3);
+    --ui-card-shadow: rgba(0, 128, 128, 0.1);
+    /* New: for Molecule */
+    --atom-color: #3B82F6; /* Soft Sky Blue */
+    --central-core-color: #008080; /* Deep Teal */
+    --energy-field-color: #3B82F6; /* Soft Sky Blue */
+}
+
+/* --- BASE STYLES --- */
+html, body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    min-height: 100vh;
+    transition: background-color 0.5s;
+}
+.mono-text {
+    font-family: 'Space Mono', monospace;
+}
+
+/* Custom "Gamer" Scrollbar (from new site) */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--accent-highlight);
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-action);
+}
+
+/* Glassmorphism/Blur (from original site, adapted) */
+.glass-effect {
+    background-color: rgba(var(--bg-primary-rgb), 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--ui-card-border);
+}
+
+/* --- SMOOTH THEME TRANSITION EFFECT --- */
+body.theme-transition {
+  transition: background-color 0.6s ease, color 0.6s ease, filter 0.4s ease;
+}
+
+body.theme-transition * {
+  transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease;
+}
+
+@keyframes glow-flash {
+  0% { filter: brightness(1); }
+  30% { filter: brightness(1.5); }
+  60% { filter: brightness(1); }
+  100% { filter: brightness(1); }
+}
+body.glow-flash {
+  animation: glow-flash 0.5s ease-in-out;
+}
+
+
+
+/* Card Hover (Merged from both sites) */
+.world-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-highlight);
+    box-shadow: 0 0 20px var(--ui-card-shadow);
+}
+
+/* Mission Link Styling (from new site, adapted) */
+.mission-link {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-family: 'Space Mono', monospace;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.mission-link:hover {
+    background-color: var(--accent-highlight);
+    color: var(--bg-primary);
+}
+.mission-link i[data-lucide="lock"] {
+    color: var(--text-secondary);
+}
+.mission-link:hover i[data-lucide="lock"] {
+color: var(--accent-danger);
+}
+
+/* --- CTA BUTTON STYLING (Hover & Pulse Animations) --- */
+.cta-button {
+    background-color: var(--accent-action);
+    color: var(--bg-primary); /* Dark text on bright button */
+    transition: transform 0.2s, box-shadow 0.3s, background-color 0.2s;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px var(--ui-card-shadow);
+}
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 0px 40px var(--ui-card-shadow);
+    opacity: 0.9;
+}
+
+/* --- CARD STYLING (Hover Animations) --- */
+.bg-card {
+        background-color: var(--bg-secondary);
+        border: 1px solid var(--ui-card-border);
+        transition: all 0.3s ease;
+}
+.bg-card:hover {
+    box-shadow: 0 0 15px var(--ui-card-shadow); /* Card border glow/depth shift */
+}
+/* General Glow Border */
+.glow-border {
+    border: 2px solid var(--accent-vibrant-magenta);
+    box-shadow: 0 0 20px rgba(255, 0, 119, 0.6); /* Magenta Glow */
+    transition: box-shadow 0.3s ease-in-out;
+}
+.glow-border:hover {
+    box-shadow: 0 0 35px rgba(255, 0, 119, 0.9); /* Stronger Magenta Glow on hover */
+}
+
+
+/* --- PULSE & FEATURED CARD ANIMATION --- */
+@keyframes pulse-action {
+    0%, 100% { box-shadow: 0 0 8px var(--ui-card-shadow); border-color: var(--accent-action); }
+    50% { box-shadow: 0 0 25px var(--accent-action); border-color: var(--accent-action); }
+}
+.pulse-card {
+    animation: pulse-action 2.5s infinite ease-in-out; /* Pulsating aura for Best Value card */
+    border-width: 3px;
+}
+
+/* Fixed Debugger Button Styling */
+.debug-button {
+    background-color: var(--bg-secondary);
+    color: var(--accent-highlight);
+    border: 1px solid var(--accent-highlight);
+    transition: all 0.3s;
+}
+.debug-button:hover {
+    background-color: var(--accent-highlight);
+    color: var(--bg-primary);
+}
+
+/* Boss Battle Button (Specific) */
+.boss-button {
+        background-color: var(--accent-danger);
+        color: var(--text-main);
+        transition: all 0.3s ease;
+}
+.boss-button:hover {
+    background-color: var(--bg-primary);
+    color: var(--accent-danger);
+    border: 1px solid var(--accent-danger);
+    box-shadow: 0 0 15px var(--accent-danger);
+}
+
+/* Particle Effect - Subtle CSS (Hero Background Animation) */
+.background-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -10;
+    opacity: 0.1; 
+}
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: var(--accent-highlight);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particle-move 30s infinite linear;
+}
+.particle:nth-child(1) { animation-delay: 0s; }
+.particle:nth-child(2) { animation-delay: 6s; }
+.particle:nth-child(3) { animation-delay: 12s; }
+.particle:nth-child(4) { animation-delay: 18s; }
+.particle:nth-child(5) { animation-delay: 24s; }
+
+
+@keyframes particle-move {
+    0% { transform: translate(0, 0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translate(100vw, 100vh); opacity: 0; }
+}
+
+/* Molecular Visualization (3D Rotation Animation) */
+@keyframes rotate3D {
+    0% { transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+    50% { transform: rotateY(180deg) rotateX(10deg); }
+    100% { transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg); }
+}
+@keyframes atom-pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+@keyframes central-core-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
+}
+
+@keyframes energy-pulse {
+    0%, 100% { opacity: 0.1; transform:translate(-50%, -50%)  scale(1.2); }
+    50% { opacity: 0.3; transform:translate(-50%, -50%)  scale(1.3); }
+}
+
+@keyframes energy-shift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+.molecule-viz {
+    position: absolute;
+    animation: rotate3D 20s infinite linear;
+    perspective: 1000px;
+    /* Ensure the parent div has size, which it does from inline style */
+}
+.atom {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: var(--atom-color);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--atom-color), 0 0 20px rgba(0,212,170,0.5), inset 0 0 5px rgba(255,255,255,0.7);
+    transition: background-color 0.5s, box-shadow 0.5s;
+    transform-style: preserve-3d;
+    animation: atom-pulse 3s infinite ease-in-out;
+    z-index: 10;
+}
+.central-core {
+        /* THIS IS THE FIX: Added positioning */
+    top: 50%;
+    left: 50%;
+    /* End Fix */
+    background-color: var(--central-core-color) !important;
+    width: 25px !important;
+    height: 25px !important;
+    box-shadow: 0 0 15px var(--central-core-color), 0 0 30px var(--central-core-color), inset 0 0 8px rgba(255,255,255,0.8) !important;
+    animation: central-core-pulse 2s infinite ease-in-out;
+    z-index: 11;
+}
+.bond {
+    position: absolute;
+    height: 3px;
+    background-color: #4B0082;
+}
+.energy-field {
+    position: absolute;
+    /* Sizing and positioning the energy field */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; /* Slightly larger than molecule */
+    height: 200px;
+    /* End Sizing */
+    
+    border-radius: 50%;
+    background: radial-gradient(circle at center, var(--energy-field-color) 0%, transparent 70%);
+    opacity: 0.1;
+    filter: blur(15px);
+    animation: energy-pulse 5s infinite ease-in-out alternate,
+                energy-shift 15s infinite linear;
+    z-index: 5;
+}
+
+@keyframes expand-fade {
+    0% { transform: scale(0.5); opacity: 0.2; border-width: 1px; }
+    50% { transform: scale(1.2); opacity: 0.8; border-width: 2px; }
+    100% { transform: scale(1.5); opacity: 0; border-width: 1px; }
+}
+
+/* Section Divider Scanning Line Animation */
+.section-divider {
+    position: relative;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--accent-highlight), transparent);
+    overflow: hidden;
+    margin: 4rem auto;
+    width: 90%;
+    max-width: 1200px;
+}
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, transparent, var(--accent-action), transparent);
+    animation: scan-line 8s infinite linear;
+}
+@keyframes scan-line {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* --------------------------------------------- */
+/* RESPONSIVE REFINEMENTS FOR ALL DEVICES        */
+/* --------------------------------------------- */
+
+/* Prevent horizontal scrolls */
+
+
+/* Navbar and Text Adjustments */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 1.75rem;
+  }
+  nav a {
+    font-size: 0.85rem;
+  }
+}
+
+/* Hero Section Scaling */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.75rem !important;
+    line-height: 2.2rem;
+  }
+  p {
+    font-size: 0.95rem;
+  }
+  .cta-button {
+    font-size: 0.9rem;
+    padding: 0.75rem 1.25rem;
+  }
+  .molecule-viz {
+    width: 100px !important;
+    height: 100px !important;
+  }
+  .atom {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+/* Cards and Grids on Mobile */
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  .bg-card {
+    margin: 0.5rem 0;
+  }
+  .section-divider {
+    width: 95%;
+    margin: 2rem auto;
+  }
+  .debug-button {
+    bottom: 12px;
+    right: 12px;
+    padding: 0.6rem 1rem;
+    font-size: 0.75rem;
+  }
+  .debug-button i {
+    width: 16px;
+    height: 16px;
+  }
+  footer p {
+    font-size: 0.8rem;
+  }
+}
+
+/* Footer Fine-Tuning */
+footer {
+  text-align: center;
+  word-wrap: break-word;
+}

@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry Booster - JEE & NEET Chemistry Preparation </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+
+
+    <!-- Load Lucide Icons for quick visual cues -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+
+<body class="student-mode overflow-x-hidden">
+    <div class="background-particles">
+        <div class="particle" style="top: 5%; left: 10%;"></div>
+        <div class="particle" style="top: 25%; left: 30%;"></div>
+        <div class="particle" style="top: 50%; left: 50%;"></div>
+        <div class="particle" style="top: 75%; left: 70%;"></div>
+        <div class="particle" style="top: 90%; left: 90%;"></div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed top-20 right-5 z-50 space-y-2">
+        <!-- Toasts will be injected here by JS -->
+    </div>
+
+    <!-- 
+    ============================================================
+    MODALS
+    ============================================================
+    -->
+    
+    <!-- Modal 1: Mission Hub (from new site) -->
+    <div id="mission-modal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-40 p-4 hidden">
+        <div class="bg-card w-full max-w-2xl rounded-2xl shadow-xl overflow-hidden border-2 border-[var(--accent-highlight)]">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-5 border-b border-[var(--ui-card-border)]">
+                <div class="flex items-center space-x-3">
+                    <i data-lucide="flask-conical" class="text-[var(--accent-highlight)] w-8 h-8"></i>
+                    <div>
+                        <h3 id="modal-title" class="text-xl font-semibold text-[var(--text-main)]">Mission: The Mole Concept</h3>
+                        <p id="modal-subtitle" class="text-sm text-[var(--text-secondary)] mono-text">World 1: Foundation Lair</p>
+                    </div>
+                </div>
+                <button id="close-modal-btn" class="text-[var(--text-secondary)] hover:text-[var(--text-main)] transition-colors">
+                    <i data-lucide="x" class="w-8 h-8"></i>
+                </button>
+            </div>
+            
+            <!-- Modal Body -->
+            <div class="p-6 text-[var(--text-secondary)] max-h-[70vh] overflow-y-auto">
+                <!-- Tabs -->
+                <div class="mb-4 border-b border-[var(--ui-card-border)]">
+                    <nav class="flex space-x-4" aria-label="Tabs">
+                        <a href="#" class="tab-link active text-[var(--accent-highlight)] border-b-2 border-[var(--accent-highlight)] px-3 py-2 text-sm font-semibold mono-text" data-tab="study">
+                            <i data-lucide="book-open" class="w-4 h-4 mr-1 inline-block"></i> INTEL (STUDY)
+                        </a>
+                        <a href="#" class="tab-link text-[var(--text-secondary)] hover:text-[var(--text-main)] px-3 py-2 text-sm font-semibold mono-text" data-tab="practice">
+                            <i data-lucide="gamepad-2" class="w-4 h-4 mr-1 inline-block"></i> TRAINING SIM (PRACTICE)
+                        </a>
+                        <a href="#" class="tab-link text-[var(--text-secondary)] hover:text-[var(--text-main)] px-3 py-2 text-sm font-semibold mono-text" data-tab="boss">
+                            <i data-lucide="skull" class="w-4 h-4 mr-1 inline-block"></i> BOSS BATTLE (TEST)
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <div id="study-content" class="tab-pane active space-y-3 mono-text">
+                        <h4 class="text-lg font-semibold text-[var(--text-main)]">MISSION BRIEFING:</h4>
+                        <p>The Mole is the key to unlocking quantitative chemistry. It's a number, Avogadro's number ($6.022 \times 10^{23}$), that lets us count atoms and molecules by weighing them.</p>
+                        <p>Master this, and you'll control the battlefield of reactions.</p>
+                        <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden bg-[var(--bg-primary)] border border-[var(--ui-card-border)]">
+                             <img src="https://placehold.co/600x338/0D1117/00D4AA?text=Video+Lesson+Loading..." alt="Video lesson placeholder" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                    <div id="practice-content" class="tab-pane hidden space-y-4 mono-text">
+                        <h4 class="text-lg font-semibold text-[var(--text-main)]">TRAINING SIMULATION:</h4>
+                        <p>Run through these drills to sharpen your skills before the boss battle.</p>
+                        <div class="p-4 bg-[var(--bg-primary)] rounded-lg border border-[var(--ui-card-border)]">
+                            <p class="font-mono text-[var(--accent-action)]">> Question 1: How many atoms in 2.0 moles of Helium?</p>
+                            <input type="text" placeholder="Type your answer..." class="mt-2 w-full bg-[var(--bg-primary)] border border-[var(--ui-card-border)] rounded-md p-2 text-[var(--text-main)] focus:ring-2 focus:ring-[var(--accent-highlight)] focus:outline-none mono-text">
+                            <button class="mt-2 px-4 py-2 bg-[var(--accent-highlight)] hover:opacity-80 rounded-md text-[var(--bg-primary)] font-medium transition-colors mono-text">SUBMIT</button>
+                        </div>
+                    </div>
+                    <div id="boss-content" class="tab-pane hidden space-y-4 mono-text">
+                        <h4 class="text-lg font-semibold text-[var(--accent-danger)]">BOSS BATTLE: THE MOLE KING</h4>
+                        <p>You have 10 minutes to defeat the boss by answering 5 timed, high-difficulty questions. Good luck, agent.</p>
+                        <ul class="list-disc list-inside text-[var(--accent-warning)]">
+                            <li>LOOT DROP: +150 XP</li>
+                            <li>BONUS: "MOLE MASTER" BADGE</li>
+                        </ul>
+                        <button class="w-full py-3 boss-button rounded-lg text-white font-bold text-lg shadow-lg transition-all mono-text">
+                            <i data-lucide="biohazard" class="w-5 h-5 mr-2 inline-block"></i>BEGIN BOSS BATTLE
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-5 bg-[var(--bg-primary)] bg-opacity-50 border-t border-[var(--ui-card-border)] flex justify-end space-x-3">
+                <button id="quit-mission-btn" class="px-5 py-2 rounded-lg bg-[var(--text-secondary)] bg-opacity-30 hover:bg-opacity-50 text-[var(--text-main)] font-medium transition-colors mono-text">QUIT</button>
+                <button id="complete-mission-btn" class="px-5 py-2 rounded-lg bg-[var(--accent-action)] hover:opacity-80 text-[var(--bg-primary)] font-semibold shadow-lg transition-colors mono-text">COMPLETE (+25 XP)</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2: Free Kit (from original site) -->
+    <div id="modal-kit" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden" onclick="if(event.target.id === 'modal-kit') this.classList.add('hidden')">
+        <div class="bg-card p-8 rounded-xl max-w-lg w-full m-4 border-2 border-[var(--accent-highlight)] shadow-2xl relative">
+            <button class="absolute top-3 right-3 text-[var(--text-secondary)] hover:text-[var(--accent-highlight)]" onclick="document.getElementById('modal-kit').classList.add('hidden')">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h4 class="text-3xl font-bold mb-4 text-[var(--accent-highlight)]">FREE ORGANIC DECONSTRUCTOR!</h4>
+            <p class="text-[var(--text-secondary)] mb-6 mono-text">Enter your credentials to instantly inject the **Organic 3-Day Crisis Fix Mini-Course** and **Cheat Sheet**.</p>
+            <form>
+                <input type="text" placeholder="ACCESS_ID (Full Name)" class="w-full p-3 mb-4 rounded bg-[var(--bg-primary)] border border-[var(--ui-card-border)] text-[var(--text-main)] placeholder-[var(--text-secondary)] focus:ring focus:ring-[var(--accent-highlight)] focus:border-[var(--accent-highlight)] mono-text" required>
+                <input type="email" placeholder="AUTH_KEY (Email Required)" class="w-full p-3 mb-4 rounded bg-[var(--bg-primary)] border border-[var(--ui-card-border)] text-[var(--text-main)] placeholder-[var(--text-secondary)] focus:ring focus:ring-[var(--accent-highlight)] focus:border-[var(--accent-highlight)] mono-text" required>
+                <button type="submit" class="w-full cta-button font-bold py-3 rounded-xl text-lg">
+                    TRANSMIT FILE
+                </button>
+            </form>
+            <p class="text-xs text-[var(--text-secondary)] mt-4 mono-text">// STATUS: SECURE. ZERO SPAM GUARANTEED.</p>
+        </div>
+    </div>
+    
+    <!-- Modal 3: Debugger (from original site) -->
+    <div id="debugger-modal" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 hidden" onclick="if(event.target.id === 'debugger-modal') this.classList.add('hidden')">
+        <div class="bg-card p-6 rounded-xl max-w-2xl w-full m-4 border-2 border-[var(--accent-highlight)] shadow-2xl relative">
+            <button class="absolute top-3 right-3 text-[var(--text-secondary)] hover:text-[var(--accent-highlight)]" onclick="document.getElementById('debugger-modal').classList.add('hidden')">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h4 class="text-2xl font-bold mb-4 text-[var(--accent-action)] mono-text flex items-center space-x-2">
+                <i data-lucide="bug" class="w-6 h-6"></i> <span>CONCEPT DEBUGGER V1.0</span>
+            </h4>
+            <p class="text-[var(--text-secondary)] mb-4 text-sm mono-text">Submit a confusing chemistry term for an instant, clear, JEE/NEET-focused explanation.</p>
+            
+            <form id="debugger-form">
+                <input type="text" id="debugger-input" placeholder="ENTER TERM TO DEBUG..." class="w-full p-3 mb-4 rounded bg-[var(--bg-primary)] border border-[var(--ui-card-border)] text-[var(--text-main)] placeholder-[var(--text-secondary)] focus:ring focus:ring-[var(--accent-highlight)] focus:border-[var(--accent-highlight)] mono-text" maxlength="50" required>
+                <button type="submit" id="debugger-submit" class="w-full cta-button font-bold py-3 rounded-xl text-lg flex items-center justify-center space-x-2">
+                    <i data-lucide="cpu" class="w-5 h-5"></i>
+                    <span>PROCESS & DEBUG</span>
+                </button>
+            </form>
+
+            <div class="mt-6 border-t border-[var(--ui-card-border)] pt-4">
+                <h5 class="text-lg font-bold mb-2 text-[var(--accent-highlight)] mono-text">DEBUG LOG:</h5>
+                <pre id="debugger-output" class="rounded-lg mono-text bg-[var(--bg-primary)] p-4 border border-[var(--ui-card-border)] text-left whitespace-pre-wrap max-h-60 overflow-y-auto">Awaiting Query... The Quantum Core is standing by for clarity.</pre>
+                <p id="loading-indicator" class="text-[var(--accent-action)] mt-2 mono-text hidden">Processing... Running High-Yield Algorithm...</p>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Navigation Bar -->
+    <header class="p-4 border-b border-[var(--ui-card-border)] sticky top-0 z-30 backdrop-blur-sm glass-effect">
+        <div
+            class="max-w-7xl mx-auto grid md:grid-cols-[auto_1fr_auto] grid-cols-[auto_auto_auto] items-center px-4 gap-8">
+
+            <!-- Left -->
+            <div class="flex items-center justify-start  space-x-3">
+                <button id="menu-btn" class="md:hidden text-[var(--text-main)] focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                <a href="#" class="flex items-center space-x-2">
+                    <i data-lucide="atom" class="text-[var(--accent-action)] w-10 h-10"></i>
+                    <span
+                        class="text-3xl font-extrabold tracking-wider text-[var(--accent-highlight)] hover:text-emerald-300 transition-all duration-300 drop-shadow-lg shadow-none">
+                        CHEMISTRY <span class="text-[var(--accent-action)]">BOOSTER</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Center -->
+            <nav
+                class="hidden md:flex justify-center space-x-6 text-sm font-mono text-[var(--text-secondary)] tracking-wide">
+                <a href="#worlds" class="relative group hover:text-[var(--accent-highlight)] transition">MODULES <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#lab" class="relative group hover:text-[var(--accent-highlight)] transition">THE_LAB <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#leaderboard"
+                    class="relative group hover:text-[var(--accent-highlight)] transition">LEADERBOARD <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#mentor" class="relative group hover:text-[var(--accent-highlight)] transition">MENTOR <span
+                        class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+            </nav>
+
+            <!-- Right -->
+            <div class="flex justify-end items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="coins" class="text-[var(--accent-warning)] w-4 h-4"></i>
+                    <span class="text-[var(--text-main)] font-semibold mono-text">1,280</span>
+                </div>
+                <img class="h-10 w-10 rounded-full border-2 border-[var(--accent-highlight)]"
+                    src="https://placehold.co/40x40/0D1117/7EFF00?text=A" alt="Player Avatar">
+                <button id="theme-toggle"
+                    class="group py-2 px-4 rounded-full flex items-center border border-[var(--accent-highlight)] text-[var(--accent-highlight)] transition duration-300 hover:bg-[var(--accent-highlight)] hover:text-[var(--bg-primary)] hover:shadow-[0_0_20px_var(--accent-highlight)]">
+                    <i id="theme-icon" data-lucide="sun" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- Mobile Menu (Dropdown) -->
+        <div id="mobile-menu"
+            class="hidden flex flex-col items-center space-y-4 p-4 font-mono  bg-[var(--accent-highlight)] mt-4 text-lg text-[var(--text-secondary)] border-t border-[var(--ui-card-border)] transition-all duration-300 p-4 border-b border-[var(--ui-card-border)] sticky top-0 z-10 backdrop-blur-sm"
+            style="background-color: var(--bg-primary); background-color: rgba(var(--bg-primary-rgb), 0.9);">
+            <a class="hidden md:flex space-x-8 text-sm font-mono text-grey-300 tracking-wide">
+                <a href="#worlds" class="relative group hover:text-[var(--accent-highlight)] transition">MODULES <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#lab" class="relative group hover:text-[var(--accent-highlight)] transition">THE_LAB <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#leaderboard" class="relative group hover:text-[var(--accent-highlight)] transition">LEADERBOARD <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+                <a href="#mentor" class="relative group hover:text-[var(--accent-highlight)] transition">MENTOR <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[var(--accent-highlight)] transition-all duration-300 group-hover:w-full"></span></a>
+            </a>
+        </div>
+
+    </header>
+
+    
+    <!-- 
+    ============================================================
+    HERO SECTION (UPDATED HTML & CSS)
+    ============================================================
+    -->
+    <main class="text-center py-16 md:py-24 max-w-7xl mx-auto px-4 relative z-0">
+        <div class="md:flex md:items-center md:text-left">
+            <div class="md:w-3/5">
+                <p class="text-[var(--accent-warning)] uppercase text-sm font-semibold mb-3 tracking-widest mono-text">
+                    SYSTEM READY: FOR JEE MAIN, ADVANCED, AND NEET-UG</p>
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-[var(--text-main)]">
+                    <span class="text-[var(--accent-highlight)] drop-shadow-sm">DEBUG</span> Your Chemistry. <span
+                        class="text-[var(--accent-action)] drop-shadow-sm">ACTIVATE</span> Your Rank.
+                </h2>
+                <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-lg mx-auto md:mx-0 mono-text">
+                    This is a <b>High-Yield Terminal</b>.
+                    Stop cramming low-value data.
+                    Master the <b>80/20</b> formula for JEE/NEET success.
+                </p>
+
+                <!-- Primary CTA (Lead Magnet - Free Emergency Kit) -->
+                <div
+                    class="flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-10">
+                    <button onclick="document.getElementById('modal-kit').classList.remove('hidden')"
+                        class="cta-button font-bold py-3 px-8 rounded-xl text-lg w-full sm:w-auto">
+                        <i data-lucide="download-cloud" class="w-5 h-5 inline-block -mt-1 mr-2"></i> FREE ORGANIC DECONSTRUCTOR
+                    </button>
+                    <a href="#worlds"
+                        class="text-[var(--text-secondary)] font-semibold py-3 px-8 rounded-xl border border-[var(--ui-card-border)] hover:border-[var(--accent-highlight)] hover:text-[var(--accent-highlight)] transition w-full sm:w-auto mono-text">
+                        ENTER GAME HUB →
+                    </a>
+                </div>
+
+                <!-- Pain Point Acknowledgment Bar -->
+                <div
+                    class="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8 pt-4 border-t border-[var(--ui-card-border)] text-sm text-[var(--text-secondary)] font-semibold mono-text">
+                    <p class="flex items-center space-x-2 text-[var(--accent-highlight)]"><span
+                            class="text-[var(--accent-action)]">&#10003;</span> GAMIFIED LEARNING</p>
+                    <p class="flex items-center space-x-2 text-[var(--accent-highlight)]"><span
+                            class="text-[var(--accent-action)]">&#10003;</span> 80/20 OPTIMIZATION</p>
+                    <p class="flex items-center space-x-2 text-[var(--accent-highlight)]"><span
+                            class="text-[var(--accent-action)]">&#10003;</span> ZERO STRESS PROTOCOL</p>
+                    <p class="flex items-center space-x-2 text-[var(--accent-highlight)]"><span
+                            class="text-[var(--accent-action)]">&#10003;</span> INTERACTIVE VISUALS</p>
+                </div>
+            </div>
+
+            <!-- (Right Side - 3D Molecule) - CORRECTED HTML -->
+            <div class="hidden md:block md:w-2/5 mt-10 md:mt-0 relative h-64 md:h-96 flex items-center justify-center">
+                <div class="relative flex items-center justify-center" style="width: 250px; height: 250px;">
+                    <!-- 3D Molecule Visualization -->
+                    <div class="molecule-viz absolute w-[200px] h-[200px]">
+                        <!-- Carbon Atoms (6) - Removed inline styles for cleaner HTML -->
+                        <div class="atom" style="top: 0; left: 50%;"></div>
+                        <div class="atom" style="top: 25%; left: 93.3%;"></div>
+                        <div class="atom" style="top: 75%; left: 93.3%;"></div>
+                        <div class="atom" style="top: 100%; left: 50%;"></div>
+                        <div class="atom" style="top: 75%; left: 6.7%;"></div>
+                        <div class="atom" style="top: 25%; left: 6.7%;"></div>
+                        
+                        <!-- Inner Resonance (Teal Dot/Energy Core) -->
+                        <!-- This now *only* has the classes. The CSS handles all styling. -->
+                        <div class="atom central-core"></div>
+                    </div>
+                    <div class="energy-field"></div> <!-- Pulsing Energy Field -->
+                </div>
+                <p class="absolute bottom-0 text-center text-[var(--text-secondary)] italic text-sm mono-text">
+                    REAL-TIME ONLINE CLASS.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Section Divider --><div class="section-divider"></div>
+
+    <!-- 
+    ============================================================
+    MAIN CONTENT GRID (from new site)
+    ============================================================
+    -->
+    <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"> -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+
+            <!-- Left Column: Quest Log & Profile -->
+            <aside class="lg:col-span-1 space-y-6">
+                <!-- Player Profile Card -->
+                <div class="bg-card rounded-2xl shadow-lg p-5 text-center border-t-4 border-[var(--accent-highlight)]">
+                    <img class="h-24 w-24 rounded-full border-4 border-[var(--accent-highlight)] mx-auto"
+                        src="https://placehold.co/96x96/0D1117/7EFF00?text=A" alt="Player Avatar">
+                    <h2 class="mt-3 text-xl font-bold text-[var(--text-main)]">Agent_Atom</h2>
+                    <p class="text-sm text-[var(--accent-highlight)] mono-text">Level 12 - Senior Alchemist</p>
+
+                    <!-- XP Bar -->
+                    <div class="mt-4">
+                        <span class="text-xs font-medium text-[var(--text-secondary)] mono-text">Next Level: 1,400 /
+                            2,000 XP</span>
+                        <div
+                            class="w-full bg-[var(--bg-primary)] rounded-full h-2.5 mt-1 border border-[var(--ui-card-border)]">
+                            <div class="bg-[var(--accent-highlight)] h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quest Log -->
+                <div class="bg-card rounded-2xl shadow-lg p-5 border border-[var(--ui-card-border)]">
+                    <h3 class="flex items-center text-lg font-semibold text-[var(--text-main)] mb-4 mono-text">
+                        <i data-lucide="scroll" class="mr-2 text-[var(--accent-warning)] w-5 h-5"></i>
+                        Active Missions
+                    </h3>
+                    <ul class="space-y-4 mono-text text-sm">
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="star" class="text-[var(--accent-action)] w-4 h-4 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-[var(--text-secondary)]">Daily Login Streak: 5 Days</p>
+                                <p class="text-xs text-[var(--text-secondary)] opacity-70">Reward: +50 Coins</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="clipboard-list" class="text-[var(--accent-highlight)] w-4 h-4 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-[var(--text-secondary)]">Complete 3x GOC Quizzes</p>
+                                <p class="text-xs text-[var(--text-secondary)] opacity-70">Reward: +75 XP</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i data-lucide="alert-triangle" class="text-[var(--accent-danger)] w-4 h-4 mt-1"></i>
+                            <div>
+                                <p class="font-medium text-[var(--text-secondary)]">Boss Battle: Electrochemistry</p>
+                                <p class="text-xs text-[var(--text-secondary)] opacity-70">Reward: +200 XP, 'Voltaic'
+                                    Badge</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Badges -->
+                <div class="bg-card rounded-2xl shadow-lg p-5 border border-[var(--ui-card-border)]">
+                    <h3 class="flex items-center text-lg font-semibold text-[var(--text-main)] mb-4 mono-text">
+                        <i data-lucide="shield" class="mr-2 text-[var(--accent-highlight)] w-5 h-5"></i>
+                        My Badges
+                    </h3>
+                    <div class="grid grid-cols-4 gap-3 text-center">
+                        <div class="flex flex-col items-center" title="Mole Master">
+                            <i data-lucide="flask-conical" class="w-8 h-8 text-[var(--accent-action)]"></i>
+                            <span class="text-xs mt-1 text-[var(--text-secondary)] mono-text">Mole</span>
+                        </div>
+                        <div class="flex flex-col items-center" title="Redox Ruler">
+                            <i data-lucide="zap" class="w-8 h-8 text-[var(--accent-warning)]"></i>
+                            <span class="text-xs mt-1 text-[var(--text-secondary)] mono-text">Redox</span>
+                        </div>
+                        <div class="flex flex-col items-center" title="Organic Synthesizer">
+                            <i data-lucide="atom" class="w-8 h-8 text-[var(--accent-highlight)]"></i>
+                            <span class="text-xs mt-1 text-[var(--text-secondary)] mono-text">GOC</span>
+                        </div>
+                        <div class="flex flex-col items-center opacity-30" title="Locked: s-Block">
+                            <i data-lucide="lock" class="w-8 h-8 text-[var(--text-secondary)]"></i>
+                            <span class="text-xs mt-1 text-[var(--text-secondary)] mono-text">s-Block</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content: Game Worlds -->
+            <main class="lg:col-span-3 space-y-8" id="worlds">
+
+                <!-- Class 11 Worlds -->
+                <section>
+                    <h2 class="text-3xl font-bold text-[var(--text-main)] mb-4">Class 11: The Foundation Lair</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Physical Chem Card -->
+                        <div class="bg-card rounded-2xl shadow-lg overflow-hidden world-card">
+                            <div class="p-6">
+                                <span class="text-sm font-semibold text-[var(--accent-highlight)] mono-text">WORLD
+                                    1</span>
+                                <h3 class="text-xl font-bold text-[var(--text-main)] mt-1">Physical Chemistry</h3>
+                                <p class="text-sm text-[var(--text-secondary)] mt-2 h-10 mono-text">Master the maths:
+                                    Moles, Atoms, Equilibrium, and Thermodynamics.</p>
+                                <div
+                                    class="w-full bg-[var(--bg-primary)] rounded-full h-2.5 mt-4 border border-[var(--ui-card-border)]">
+                                    <div class="bg-[var(--accent-highlight)] h-2 rounded-full" style="width: 45%"></div>
+                                </div>
+                                <span class="text-xs text-[var(--text-secondary)] opacity-70 mt-1 mono-text">45%
+                                    Complete</span>
+                            </div>
+                            <div class="bg-[var(--bg-secondary)] border-t border-[var(--ui-card-border)] p-4 space-y-2">
+                                <a href="#" class="mission-link" data-title="The Mole Concept"
+                                    data-world="World 1: Foundation Lair">
+                                    <i data-lucide="play-circle"
+                                        class="w-4 h-4 text-[var(--accent-action)] mr-2 inline-block"></i>Level 1.1: The
+                                    Mole Concept
+                                </a>
+                                <a href="#" class="mission-link" data-title="Atomic Structure"
+                                    data-world="World 1: Foundation Lair">
+                                    <i data-lucide="play-circle"
+                                        class="w-4 h-4 text-[var(--accent-action)] mr-2 inline-block"></i>Level 1.2:
+                                    Atomic Structure
+                                </a>
+                                <a href="#" class="mission-link" data-title="Chemical Bonding"
+                                    data-world="World 1: Foundation Lair">
+                                    <i data-lucide="lock" class="w-4 h-4 mr-2 inline-block"></i>Level 1.3: Chemical
+                                    Bonding (Locked)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Inorganic Chem Card -->
+                        <div class="bg-card rounded-2xl shadow-lg overflow-hidden world-card">
+                            <div class="p-6">
+                                <span class="text-sm font-semibold text-[var(--accent-action)] mono-text">WORLD 2</span>
+                                <h3 class="text-xl font-bold text-[var(--text-main)] mt-1">Inorganic Chemistry</h3>
+                                <p class="text-sm text-[var(--text-secondary)] mt-2 h-10 mono-text">Conquer the periodic
+                                    table. Master the s, p, and d blocks.</p>
+                                <div
+                                    class="w-full bg-[var(--bg-primary)] rounded-full h-2.5 mt-4 border border-[var(--ui-card-border)]">
+                                    <div class="bg-[var(--accent-action)] h-2 rounded-full" style="width: 10%"></div>
+                                </div>
+                                <span class="text-xs text-[var(--text-secondary)] opacity-70 mt-1 mono-text">10%
+                                    Complete</span>
+                            </div>
+                            <div class="bg-[var(--bg-secondary)] border-t border-[var(--ui-card-border)] p-4 space-y-2">
+                                <a href="#" class="mission-link" data-title="Periodic Table"
+                                    data-world="World 2: Inorganic">
+                                    <i data-lucide="play-circle"
+                                        class="w-4 h-4 text-[var(--accent-action)] mr-2 inline-block"></i>Level 2.1:
+                                    Periodic Table
+                                </a>
+                                <a href="#" class="mission-link" data-title="s-Block Elements"
+                                    data-world="World 2: Inorganic">
+                                    <i data-lucide="lock" class="w-4 h-4 mr-2 inline-block"></i>Level 2.2: s-Block
+                                    Elements (Locked)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Class 12 Worlds -->
+                <section>
+                    <h2 class="text-3xl font-bold text-[var(--text-main)] mb-4">Class 12: The Endgame</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Organic Chem Card -->
+                        <div class="bg-card rounded-2xl shadow-lg overflow-hidden world-card">
+                            <div class="p-6">
+                                <span class="text-sm font-semibold text-[var(--accent-highlight)] mono-text">WORLD
+                                    3</span>
+                                <h3 class="text-xl font-bold text-[var(--text-main)] mt-1">Organic Chemistry II</h3>
+                                <p class="text-sm text-[var(--text-secondary)] mt-2 h-10 mono-text">From Haloalkanes to
+                                    Biomolecules. The final synthesis challenge.</p>
+                                <div
+                                    class="w-full bg-[var(--bg-primary)] rounded-full h-2.5 mt-4 border border-[var(--ui-card-border)]">
+                                    <div class="bg-[var(--accent-highlight)] h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-xs text-[var(--text-secondary)] opacity-70 mt-1 mono-text">0%
+                                    Complete</span>
+                            </div>
+                            <div class="bg-[var(--bg-secondary)] border-t border-[var(--ui-card-border)] p-4 space-y-2">
+                                <a href="#" class="mission-link" data-title="GOC & Isomerism"
+                                    data-world="World 3: Organic II">
+                                    <i data-lucide="lock" class="w-4 h-4 mr-2 inline-block"></i>Level 3.1: GOC &
+                                    Isomerism (Locked)
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Physical Chem II Card -->
+                        <div class="bg-card rounded-2xl shadow-lg overflow-hidden world-card">
+                            <div class="p-6">
+                                <span class="text-sm font-semibold text-[var(--accent-danger)] mono-text">WORLD 4</span>
+                                <h3 class="text-xl font-bold text-[var(--text-main)] mt-1">Physical Chemistry II</h3>
+                                <p class="text-sm text-[var(--text-secondary)] mt-2 h-10 mono-text">Solutions,
+                                    Electrochemistry, and the final boss: Chemical Kinetics.</p>
+                                <div
+                                    class="w-full bg-[var(--bg-primary)] rounded-full h-2.5 mt-4 border border-[var(--ui-card-border)]">
+                                    <div class="bg-[var(--accent-danger)] h-2 rounded-full" style="width: 0%"></div>
+                                </div>
+                                <span class="text-xs text-[var(--text-secondary)] opacity-70 mt-1 mono-text">0%
+                                    Complete</span>
+                            </div>
+                            <div class="bg-[var(--bg-secondary)] border-t border-[var(--ui-card-border)] p-4 space-y-2">
+                                <a href="#" class="mission-link" data-title="Solutions"
+                                    data-world="World 4: Physical II">
+                                    <i data-lucide="lock" class="w-4 h-4 mr-2 inline-block"></i>Level 4.1: Solutions
+                                    (Locked)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- The Lab: Tools -->
+                <section id="lab">
+                    <h2 class="text-3xl font-bold text-[var(--text-main)] mb-4">The Alchemist's Lab (Tools)</h2>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <a href="#"
+                            class="flex flex-col items-center justify-center p-6 bg-card rounded-2xl world-card text-center mono-text">
+                            <i data-lucide="table" class="w-10 h-10 text-[var(--accent-highlight)] mb-2"></i>
+                            <span class="font-semibold text-[var(--text-main)]">Periodic Table</span>
+                        </a>
+                        <a href="#"
+                            class="flex flex-col items-center justify-center p-6 bg-card rounded-2xl world-card text-center mono-text">
+                            <i data-lucide="calculator" class="w-10 h-10 text-[var(--accent-action)] mb-2"></i>
+                            <span class="font-semibold text-[var(--text-main)]">Solubility Solver</span>
+                        </a>
+                        <a href="#"
+                            class="flex flex-col items-center justify-center p-6 bg-card rounded-2xl world-card text-center mono-text">
+                            <i data-lucide="microscope" class="w-10 h-10 text-[var(--accent-highlight)] mb-2"></i>
+                            <span class="font-semibold text-[var(--text-main)]">3D Modeler</span>
+                        </a>
+                        <a href="#"
+                            class="flex flex-col items-center justify-center p-6 bg-card rounded-2xl world-card text-center mono-text">
+                            <i data-lucide="file-text" class="w-10 h-10 text-[var(--accent-warning)] mb-2"></i>
+                            <span class="font-semibold text-[var(--text-main)]">Formula Sheet</span>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Leaderboard -->
+                <section id="leaderboard">
+                    <h2 class="text-3xl font-bold text-[var(--text-main)] mb-4">Class 12 Leaderboard</h2>
+                    <div class="bg-card rounded-2xl shadow-lg border border-[var(--ui-card-border)] overflow-hidden">
+                        <table class="w-full text-left mono-text">
+                            <thead class="bg-[var(--bg-primary)] bg-opacity-50">
+                                <tr>
+                                    <th class="p-4 font-semibold text-[var(--text-main)]">RANK</th>
+                                    <th class="p-4 font-semibold text-[var(--text-main)]">PLAYER</th>
+                                    <th class="p-4 font-semibold text-[var(--text-main)]">LEVEL</th>
+                                    <th class="p-4 font-semibold text-[var(--text-main)]">TOTAL XP</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-[var(--ui-card-border)]">
+                                <tr class="hover:bg-[var(--bg-primary)] transition-colors">
+                                    <td class="p-4 font-bold text-[var(--accent-warning)]">#1 <i data-lucide="trophy"
+                                            class="w-4 h-4 inline-block"></i></td>
+                                    <td class="p-4 font-medium text-[var(--text-main)]">@BenzoQueen</td>
+                                    <td class="p-4 text-[var(--text-secondary)]">15</td>
+                                    <td class="p-4 font-semibold text-[var(--accent-highlight)]">15,200 XP</td>
+                                </tr>
+                                <tr class="hover:bg-[var(--bg-primary)] transition-colors">
+                                    <td class="p-4 font-bold text-[var(--text-secondary)]">#2</td>
+                                    <td class="p-4 font-medium text-[var(--text-main)]">@AtomSmasher</td>
+                                    <td class="p-4 text-[var(--text-secondary)]">14</td>
+                                    <td class="p-4 font-semibold text-[var(--accent-highlight)]">14,150 XP</td>
+                                </tr>
+                                <!-- Current Player Highlight -->
+                                <tr
+                                    class="bg-[var(--accent-highlight)] bg-opacity-10 border-y-2 border-[var(--accent-highlight)]">
+                                    <td class="p-4 font-bold text-[var(--text-main)]">#12</td>
+                                    <td class="p-4 font-medium text-[var(--text-main)] flex items-center">@Agent_Atom
+                                        <span class="ml-2 text-xs text-[var(--accent-highlight)]">(You)</span></td>
+                                    <td class="p-4 text-[var(--text-secondary)]">12</td>
+                                    <td class="p-4 font-semibold text-[var(--accent-highlight)]">11,400 XP</td>
+                                </tr>
+                                <tr class="hover:bg-[var(--bg-primary)] transition-colors">
+                                    <td class="p-4 font-bold text-[var(--text-secondary)]">#13</td>
+                                    <td class="p-4 font-medium text-[var(--text-main)]">@HeisenbergJr</td>
+                                    <td class="p-4 text-[var(--text-secondary)]">12</td>
+                                    <td class="p-4 font-semibold text-[var(--accent-highlight)]">11,250 XP</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Section Divider -->
+                <div class="section-divider"></div>
+
+                <!-- Mentor Section (from original site) -->
+                <section id="mentor">
+                    <h3 class="text-3xl font-bold mb-10 text-center text-[var(--accent-highlight)] mono-text">MENTOR
+                        PROFILE: DR. V. K. SHARMA</h3>
+                    <div
+                        class="bg-card p-8 rounded-xl flex flex-col md:flex-row items-center md:space-x-8 border-2 border-[var(--ui-card-border)]">
+                        <img src="https://placehold.co/150x150/7EFF00/0D1117?text=LEAD"
+                            onerror="this.src='https://placehold.co/150x150/7EFF00/0D1117?text=LEAD'"
+                            alt="Dr. Sharma, Chemistry Mentor"
+                            class="w-32 h-32 rounded-full border-4 border-[var(--accent-action)] mb-6 md:mb-0 shadow-lg shadow-[var(--accent-action)]/30">
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold mb-2 text-[var(--accent-highlight)]">DR. V. K. SHARMA, Ph.D.
+                                (IIT Delhi)</h4>
+                            <p class="text-[var(--accent-action)] font-semibold mb-3 mono-text">15+ YEARS EXP // 300+
+                                IIT/AIIMS SELECTIONS</p>
+                            <p class="text-[var(--text-secondary)] mono-text">"My mission: to transform complex
+                                chemistry into an intuitive, playable science. Master concepts, not just memorize them.
+                                Activate your innate genius."</p>
+                        </div>
+                    </div>
+                    <a href="#" class="mt-8 inline-block cta-button font-bold py-3 px-8 rounded-xl text-lg">
+                        BOOK FREE STRATEGY SESSION
+                    </a>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- 
+    ============================================================
+    FOOTER
+    ============================================================
+    -->
+    <footer class="mt-16 py-8 border-t border-[var(--ui-card-border)]"
+        style="background-color: rgba(var(--bg-secondary-rgb), 0.8);">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h4 class="text-xl font-bold mb-4 text-[var(--accent-highlight)] mono-text">ESTABLISH CONNECTION. JOIN THE
+                NETWORK.</h4>
+            <p class="text-[var(--text-secondary)] mb-6 mono-text">Connect with an elite peer group. Collaborate on your
+                ascent.</p>
+            <a href="#" class="inline-flex items-center space-x-2 cta-button font-bold py-3 px-8 rounded-xl mono-text">
+                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                <span>TELEGRAM_NETWORK [ACTIVATE]</span>
+            </a>
+            <div class="flex justify-center space-x-6 mt-6">
+                <a href="#" class="text-[var(--text-secondary)] hover:text-[var(--accent-highlight)]"><i
+                        data-lucide="instagram" class="w-6 h-6"></i></a>
+                <a href="#" class="text-[var(--text-secondary)] hover:text-[var(--accent-highlight)]"><i
+                        data-lucide="youtube" class="w-6 h-6"></i></a>
+            </div>
+            <p class="text-xs text-[var(--text-secondary)] mt-10 mono-text">// CHEM.OS SYSTEM V.10.0 // 2025. ALL RIGHTS
+                RESERVED.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Debugger Button -->
+    <button onclick="document.getElementById('debugger-modal').classList.remove('hidden')"
+        class="debug-button py-3 px-6 rounded-full font-bold shadow-xl flex items-center space-x-2 fixed bottom-5 right-5 z-20 mono-text">
+        <i data-lucide="zap" class="w-5 h-5"></i>
+        <span>DEBUGGER</span>
+    </button>
